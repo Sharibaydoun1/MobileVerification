@@ -9,7 +9,6 @@ public interface NumVerifyClient {
     @GetMapping("/validate")
     MobileNumberResponsedto validateNumber(@RequestParam("access_key") String apiKey,
                                            @RequestParam("number") String phoneNumber,
-                                           @RequestParam("country_code") String countryCode,
                                            @RequestParam("format") int format);
 }
 

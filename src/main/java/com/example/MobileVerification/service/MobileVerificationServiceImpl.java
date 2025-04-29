@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class MobileVerificationServiceImpl implements MobileVerificationService {
 private final NumVerifyClient numVerifyClient;
     private final ModelMapper modelMapper;
-    @Value("ee43a6d9d9f854113f642ca3e84b8762")
+    @Value("${ACCESS_TOKEN}")
     private String accessToken;
     @Override
     public MobileNumberCleanResponsedto checkPhoneNumber(String phoneNumber) {
@@ -22,7 +22,7 @@ private final NumVerifyClient numVerifyClient;
         //Call the external API using Feign Client
         // String response = numVerifyClient.validateNumber(apiKey,phoneNumber);
         try {
-            MobileNumberResponsedto response = numVerifyClient.validateNumber(accessToken, phoneNumber, "", format);
+            MobileNumberResponsedto response = numVerifyClient.validateNumber(accessToken, phoneNumber, format);
             if (response.getValid() == null || !response.getValid()) {
                 throw new RuntimeException("Invalid number");
             }
